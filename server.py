@@ -28,6 +28,8 @@ Configuration is read from environment variables / a .env file - see
 import os
 import base64
 import logging
+from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 from typing import Any, Optional
 
 import httpx
@@ -57,7 +59,15 @@ if not FUSION_BASE_URL:
         "https://<instance>.fa.<datacenter>.oraclecloud.com"
     )
 
-mcp = FastMCP("fusion-mcp")
+mcp = FastMCP(
+    "fusion-mcp",
+    host="0.0.0.0",
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=True,
+        allowed_hosts=["demo-3z81.onrender.com"],
+        allowed_origins=["https://demo-3z81.onrender.com"],
+    ),
+)
 
 
 def _auth_header() -> dict:

@@ -30,11 +30,11 @@ cp .env.example .env
 Edit `.env`:
 
 ```
-FUSION_BASE_URL=https://eiiv-dev1.login.us6.oraclecloud.com
+FUSION_BASE_URL=http://fa-launchpad.oraclepdemos.com
 FUSION_API_VERSION=11.13.26.07.0
 FUSION_AUTH_MODE=basic
-FUSION_USERNAME=vprathibha@deloitte.com
-FUSION_PASSWORD=Welcome@123
+FUSION_USERNAME=hcm_impl10
+FUSION_PASSWORD=D^6K7a?q
 ```
 
 > **Auth note:** Basic Auth (username/password) is the simplest option and

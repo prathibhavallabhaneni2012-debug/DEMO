@@ -28,12 +28,11 @@ Configuration is read from environment variables / a .env file - see
 import os
 import base64
 import logging
-from mcp.server.fastmcp import FastMCP
-from mcp.server.transport_security import TransportSecuritySettings
 from typing import Any, Optional
 
 import httpx
 from dotenv import load_dotenv
+from mcp.server.fastmcp import FastMCP
 
 load_dotenv()
 
@@ -44,8 +43,7 @@ logger = logging.getLogger("fusion-mcp")
 # Configuration
 # ---------------------------------------------------------------------------
 FUSION_BASE_URL = os.getenv("FUSION_BASE_URL", "").rstrip("/")
-logger.warning(f"DEBUG: FUSION_BASE_URL loaded as: '{FUSION_BASE_URL}'")
-FUSION_API_VERSION = os.getenv("FUSION_API_VERSION", "11.13.26.07.0")
+FUSION_API_VERSION = os.getenv("FUSION_API_VERSION", "11.13.18.05")
 FUSION_USERNAME = os.getenv("FUSION_USERNAME", "")
 FUSION_PASSWORD = os.getenv("FUSION_PASSWORD", "")
 FUSION_AUTH_MODE = os.getenv("FUSION_AUTH_MODE", "basic").lower()  # "basic" or "bearer"
@@ -59,15 +57,7 @@ if not FUSION_BASE_URL:
         "https://<instance>.fa.<datacenter>.oraclecloud.com"
     )
 
-mcp = FastMCP(
-    "fusion-mcp",
-    host="0.0.0.0",
-    transport_security=TransportSecuritySettings(
-        enable_dns_rebinding_protection=True,
-        allowed_hosts=["demo-3z81.onrender.com"],
-        allowed_origins=["https://demo-3z81.onrender.com"],
-    ),
-)
+mcp = FastMCP("fusion-mcp")
 
 
 def _auth_header() -> dict:

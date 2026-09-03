@@ -43,6 +43,8 @@ logger = logging.getLogger("fusion-mcp")
 # Configuration
 # ---------------------------------------------------------------------------
 FUSION_BASE_URL = os.getenv("FUSION_BASE_URL", "").rstrip("/")
+logger.warning(f"DEBUG: raw FUSION_BASE_URL env = {os.environ.get('FUSION_BASE_URL', '<<<KEY NOT FOUND>>>')!r}")
+logger.warning(f"DEBUG: all env keys containing FUSION: {[k for k in os.environ if 'FUSION' in k.upper()]}")
 FUSION_API_VERSION = os.getenv("FUSION_API_VERSION", "11.13.18.05")
 FUSION_USERNAME = os.getenv("FUSION_USERNAME", "")
 FUSION_PASSWORD = os.getenv("FUSION_PASSWORD", "")
